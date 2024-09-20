@@ -115,22 +115,46 @@ using System.Reflection;
 #endregion
 
 #region
-//40:49 - Working with Objects
-//42:48 - Delegates and Static vs Instance Methods
-//44:50 - Understanding the Method "Run"
-//47:12 - Exploring Method Groups and Delegates
-//49:13 - Accessing Properties of a Delegate
-//51:17 - Explaining the Compiler Method
-//53:30 - Invoking a Delegate with an Instance Method
-//55:46 - Explaining the Invocation of a Delegate
-//58:22 - Understanding Target Plus Method
-//1:00:33 - Exploring Method Groups in C#
-//1:04:38 - Multicast Delegates and Invocation Lists
-//1:06:32 - Packaging Up Functionality with Method Groups
-//1:08:45 - Assigning a Method Group to a Delegate
-//1:10:46 - Using Delegates and Invocation Lists
 //1:12:27 - Explaining Delegates and Filtering with an Enumerable
 //1:14:00 - Using Delegates and Predicate Methods
+
+delegate bool IntPredicate(int number);
+
+class Program
+{
+    static bool IsMod3(int number)
+    {
+        return number % 3 == 0;
+    }
+
+    static void Main(string[] args)
+    {
+        var arr = new[] { 1, 2, 3, 4, 5, 6 };
+        var filteredList = Filter(arr, IsMod3);
+
+        foreach (var item in filteredList)
+        {
+            Console.WriteLine(item);
+        }
+        Console.ReadKey();
+    }
+
+    static IEnumerable<int> Filter(IEnumerable<int> source, IntPredicate predicate)
+    {
+        var list = new List<int>();
+
+        foreach (var item in source)
+        {
+            if (predicate(item))
+                list.Add(item);
+        }
+        return list;
+    }
+}
+
+#endregion
+
+#region
 //1:16:00 - Understanding Invocation Lists and Delegates
 //1:19:13 - Exploring the Use of Invocation Lists
 //1:21:05 - Multicast Delegates and WPF/Winforms
@@ -175,3 +199,4 @@ using System.Reflection;
 //2:39:00 - Explaining Generics and Delegates
 //2:41:51 - Understanding Delegates
 //2:43:39 - Introduction to the Project and Logistics
+#endregion
