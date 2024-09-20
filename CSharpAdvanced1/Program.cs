@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Net.NetworkInformation;
 using System.Reflection;
 
+#region
 //06:10 - Explaining the classic FizzBuzz with an Imperative Implementation
 
 //for (var i = 0; i < 100; i++)
@@ -19,7 +20,9 @@ using System.Reflection;
 //        Console.WriteLine("Buzz");
 //    else Console.WriteLine(i);
 //}
+#endregion
 
+#region
 //08:24 - Object - Oriented Representation of FizzBuzz with an Interface
 
 //public class Program
@@ -72,54 +75,46 @@ using System.Reflection;
 //        Console.WriteLine(output);
 //    }
 //}
+#endregion
 
+#region
 //12:38 - Understanding Delegates in C#
 //14:28 - Using a Delegate to Increase Readability
 //16:10 - Understanding Delegates and Invoking Methods
 
-delegate void FizzBuzzOutput(string output);
-class Program
-{
-    static void WriteFizzBuzz(string output)
-    {
-        Console.WriteLine(output);
-    }
+//delegate void FizzBuzzOutput(string output);
+//class Program
+//{
+//    static void WriteFizzBuzz(string output)
+//    {
+//        Console.WriteLine(output);
+//    }
 
-    static void Main(string[] args)
-    {
-        Run(WriteFizzBuzz, 1, 100);
-        Console.ReadKey();
-    }
-    public static void Run(FizzBuzzOutput output, int fromNumber, int countNumber)
-    {
-        for (var i = fromNumber; i < fromNumber + countNumber; i++)
-        {
-            var div3 = i % 3 == 0;
-            var div5 = i % 5 == 0;
+//    static void Main(string[] args)
+//    {
+//        Run(WriteFizzBuzz, 1, 100);
+//        Console.ReadKey();
+//    }
+//    public static void Run(FizzBuzzOutput output, int fromNumber, int countNumber)
+//    {
+//        for (var i = fromNumber; i < fromNumber + countNumber; i++)
+//        {
+//            var div3 = i % 3 == 0;
+//            var div5 = i % 5 == 0;
 
-            if (div3 && div5)
-                Console.WriteLine("FizzBuzz");
-            else if (div3)
-                Console.WriteLine("Fizz");
-            else if (div5)
-                Console.WriteLine("Buzz");
-            else Console.WriteLine(i);
-        }
-    }
-}
+//            if (div3 && div5)
+//                Console.WriteLine("FizzBuzz");
+//            else if (div3)
+//                Console.WriteLine("Fizz");
+//            else if (div5)
+//                Console.WriteLine("Buzz");
+//            else Console.WriteLine(i);
+//        }
+//    }
+//}
+#endregion
 
-
-//18:45 - Exploring Method Groups in C#
-//20:39 - Understanding Method Groups and Lambdas
-//22:43 - Understanding Method Groups and Delegates
-//24:45 - Benefits of Abstraction in Code
-//26:52 - Reusing Delegate Types and Debugging
-//28:43 - Debugging with Delegates
-//31:03 - The Usefulness of FizzBuzz
-//32:56 - Naming Conventions for Delegates
-//34:56 - Working with Instantiated Classes and Invocation Lists
-//36:47 - Understanding C# Delegates and Method Groups
-//38:57 - Understanding Delegates and Invoking Methods
+#region
 //40:49 - Working with Objects
 //42:48 - Delegates and Static vs Instance Methods
 //44:50 - Understanding the Method "Run"
