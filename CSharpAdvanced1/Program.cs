@@ -1,25 +1,80 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System;
+using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Contracts;
 using System.Net.NetworkInformation;
 using System.Reflection;
 
-//06:10 - Explaining FizzBuzz with an Imperative Implementation
+//06:10 - Explaining the classic FizzBuzz with an Imperative Implementation
 
-for (var i = 0; i < 100; i++)
+//for (var i = 0; i < 100; i++)
+//{
+//    var div3 = i % 3 == 0;
+//    var div5 = i % 5 == 0;
+
+//    if (div3 && div5)
+//        Console.WriteLine("FizzBuzz");
+//    else if (div3)
+//        Console.WriteLine("Fizz");
+//    else if (div5)
+//        Console.WriteLine("Buzz");
+//    else Console.WriteLine(i);
+//}
+
+//08:24 - Object - Oriented Representation of FizzBuzz with an Interface
+
+public class Program
 {
-    var div3 = i % 3 == 0;
-    var div5 = i % 5 == 0;
-
-    if (div3 && div5)
-        Console.WriteLine("FizzBuzz");
-    else if (div3)
-        Console.WriteLine("Fizz");
-    else if (div5)
-        Console.WriteLine("Buzz");
-    else Console.WriteLine(i);
+    public static void Main()
+    {
+        var fizzBuzz = new FizzBuzz(new ConsoleFizzOutput());
+        fizzBuzz.RunFizzBuzzOOP(1, 100);
+        Console.ReadKey();
+    }
 }
 
-//08:24 - Object - Oriented Representation of FizzBuzz
+public interface IFizzOutput
+{
+    void Write(string output);
+}
+
+public class FizzBuzz
+{
+    private readonly IFizzOutput _output;
+
+    public FizzBuzz(IFizzOutput output)
+    {
+        _output = output;
+    }
+
+    public void RunFizzBuzzOOP(int fromNumber, int countNumber)
+    {
+        for (var i = fromNumber; i < countNumber; i++)
+        {
+            var div3 = i % 3 == 0;
+            var div5 = i % 5 == 0;
+
+            if (div3 && div5)
+                _output.Write("FizzBuzz");
+            else if (div3)
+                _output.Write("Fizz");
+            else if (div5)
+                _output.Write("Buzz");
+            else
+                _output.Write(i.ToString());
+        }
+    }
+}
+
+public class ConsoleFizzOutput : IFizzOutput
+{
+    public void Write(string output)
+    {
+        Console.WriteLine(output);
+    }
+}
+
+
+
 //12:38 - Understanding Delegates in C#
 //14:28 - Using a Delegate to Increase Readability
 //16:10 - Understanding Delegates and Invoking Methods
