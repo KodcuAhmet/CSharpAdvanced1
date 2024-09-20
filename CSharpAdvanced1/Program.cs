@@ -22,62 +22,93 @@ using System.Reflection;
 
 //08:24 - Object - Oriented Representation of FizzBuzz with an Interface
 
-public class Program
+//public class Program
+//{
+//    public static void Main()
+//    {
+//        var fizzBuzz = new FizzBuzz(new ConsoleFizzOutput());
+//        fizzBuzz.RunFizzBuzzOOP(1, 100);
+//        Console.ReadKey();
+//    }
+//}
+
+//public interface IFizzOutput
+//{
+//    void Write(string output);
+//}
+
+//public class FizzBuzz
+//{
+//    private readonly IFizzOutput _output;
+
+//    public FizzBuzz(IFizzOutput output)
+//    {
+//        _output = output;
+//    }
+
+//    public void RunFizzBuzzOOP(int fromNumber, int countNumber)
+//    {
+//        for (var i = fromNumber; i < countNumber; i++)
+//        {
+//            var div3 = i % 3 == 0;
+//            var div5 = i % 5 == 0;
+
+//            if (div3 && div5)
+//                _output.Write("FizzBuzz");
+//            else if (div3)
+//                _output.Write("Fizz");
+//            else if (div5)
+//                _output.Write("Buzz");
+//            else
+//                _output.Write(i.ToString());
+//        }
+//    }
+//}
+
+//public class ConsoleFizzOutput : IFizzOutput
+//{
+//    public void Write(string output)
+//    {
+//        Console.WriteLine(output);
+//    }
+//}
+
+//12:38 - Understanding Delegates in C#
+//14:28 - Using a Delegate to Increase Readability
+//16:10 - Understanding Delegates and Invoking Methods
+
+delegate void FizzBuzzOutput(string output);
+class Program
 {
-    public static void Main()
+    static void WriteFizzBuzz(string output)
     {
-        var fizzBuzz = new FizzBuzz(new ConsoleFizzOutput());
-        fizzBuzz.RunFizzBuzzOOP(1, 100);
+        Console.WriteLine(output);
+    }
+
+    static void Main(string[] args)
+    {
+        Run(WriteFizzBuzz, 1, 100);
         Console.ReadKey();
     }
-}
-
-public interface IFizzOutput
-{
-    void Write(string output);
-}
-
-public class FizzBuzz
-{
-    private readonly IFizzOutput _output;
-
-    public FizzBuzz(IFizzOutput output)
+    public static void Run(FizzBuzzOutput output, int fromNumber, int countNumber)
     {
-        _output = output;
-    }
-
-    public void RunFizzBuzzOOP(int fromNumber, int countNumber)
-    {
-        for (var i = fromNumber; i < countNumber; i++)
+        for (var i = fromNumber; i < fromNumber + countNumber; i++)
         {
             var div3 = i % 3 == 0;
             var div5 = i % 5 == 0;
 
             if (div3 && div5)
-                _output.Write("FizzBuzz");
+                Console.WriteLine("FizzBuzz");
             else if (div3)
-                _output.Write("Fizz");
+                Console.WriteLine("Fizz");
             else if (div5)
-                _output.Write("Buzz");
-            else
-                _output.Write(i.ToString());
+                Console.WriteLine("Buzz");
+            else Console.WriteLine(i);
         }
     }
 }
 
-public class ConsoleFizzOutput : IFizzOutput
-{
-    public void Write(string output)
-    {
-        Console.WriteLine(output);
-    }
-}
 
-
-
-//12:38 - Understanding Delegates in C#
-//14:28 - Using a Delegate to Increase Readability
-//16:10 - Understanding Delegates and Invoking Methods
 //18:45 - Exploring Method Groups in C#
 //20:39 - Understanding Method Groups and Lambdas
 //22:43 - Understanding Method Groups and Delegates
