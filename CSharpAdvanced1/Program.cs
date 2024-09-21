@@ -3,6 +3,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Contracts;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 #region
 //06:10 - Explaining the classic FizzBuzz with an Imperative Implementation
@@ -118,39 +119,39 @@ using System.Reflection;
 //1:12:27 - Explaining Delegates and Filtering with an Enumerable
 //1:14:00 - Using Delegates and Predicate Methods
 
-delegate bool IntPredicate(int number);
+//delegate bool IntPredicate(int number);
 
-class Program
-{
-    static bool IsMod3(int number)
-    {
-        return number % 3 == 0;
-    }
+//class Program
+//{
+//    static bool IsMod3(int number)
+//    {
+//        return number % 3 == 0;
+//    }
 
-    static void Main(string[] args)
-    {
-        var arr = new[] { 1, 2, 3, 4, 5, 6 };
-        var filteredList = Filter(arr, IsMod3);
+//    static void Main(string[] args)
+//    {
+//        var arr = new[] { 1, 2, 3, 4, 5, 6 };
+//        var filteredList = Filter(arr, IsMod3);
 
-        foreach (var item in filteredList)
-        {
-            Console.WriteLine(item);
-        }
-        Console.ReadKey();
-    }
+//        foreach (var item in filteredList)
+//        {
+//            Console.WriteLine(item);
+//        }
+//        Console.ReadKey();
+//    }
 
-    static IEnumerable<int> Filter(IEnumerable<int> source, IntPredicate predicate)
-    {
-        var list = new List<int>();
+//    static IEnumerable<int> Filter(IEnumerable<int> source, IntPredicate predicate)
+//    {
+//        var list = new List<int>();
 
-        foreach (var item in source)
-        {
-            if (predicate(item))
-                list.Add(item);
-        }
-        return list;
-    }
-}
+//        foreach (var item in source)
+//        {
+//            if (predicate(item))
+//                list.Add(item);
+//        }
+//        return list;
+//    }
+//}
 
 #endregion
 
@@ -159,6 +160,44 @@ class Program
 //1:19:13 - Exploring the Use of Invocation Lists
 //1:21:05 - Multicast Delegates and WPF/Winforms
 //1:23:01 - Using Delegates to Invoke Behaviors: Simulate a Button Click
+
+//delegate void ButtonClick(Button button);
+
+//class Button
+//{
+//    public ButtonClick Click;
+//    public void SimulateClick()
+//    {
+//        Click(this);
+//    }
+//}
+
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        var button = new Button();
+//        button.Click += ButtonClickedBehaviour;
+//        button.Click += OtherButtonClickedBehaviour;
+
+//        button.SimulateClick();
+//        Console.ReadKey();
+//    }
+
+//    static void ButtonClickedBehaviour(Button button)
+//    {
+//        Console.WriteLine("Button clicked!");
+//    }
+
+//    static void OtherButtonClickedBehaviour(Button button)
+//    {
+//        Console.WriteLine("Other button clicked!");
+//    }
+//}
+
+#endregion
+
+#region
 //1:25:01 - Understanding C# Delegates
 //1:27:19 - Working with Delegates
 //1:27:42 - The Problems with Public Fields
