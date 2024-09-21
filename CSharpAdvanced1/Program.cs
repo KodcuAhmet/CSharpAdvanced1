@@ -204,40 +204,40 @@ using System.Security.Cryptography.X509Certificates;
 //1:37:40 - Explaining Events in C#
 //1:39:42 - Understanding Events and Delegates
 
-delegate void ButtonClick(Button button);
+//delegate void ButtonClick(Button button);
 
-class Button
-{
-    public event ButtonClick Click;
-    public void SimulateClick()
-    {
-        if (Click != null)
-            Click(this);
-    }
-}
+//class Button
+//{
+//    public event ButtonClick Click;
+//    public void SimulateClick()
+//    {
+//        if (Click != null)
+//            Click(this);
+//    }
+//}
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        var button = new Button();
-        button.Click += ButtonClickedBehaviour;
-        button.Click += OtherButtonClickedBehaviour;
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        var button = new Button();
+//        button.Click += ButtonClickedBehaviour;
+//        button.Click += OtherButtonClickedBehaviour;
 
-        button.SimulateClick();
-        Console.ReadKey();
-    }
+//        button.SimulateClick();
+//        Console.ReadKey();
+//    }
 
-    static void ButtonClickedBehaviour(Button button)
-    {
-        Console.WriteLine("Button clicked!");
-    }
+//    static void ButtonClickedBehaviour(Button button)
+//    {
+//        Console.WriteLine("Button clicked!");
+//    }
 
-    static void OtherButtonClickedBehaviour(Button button)
-    {
-        Console.WriteLine("Other button clicked!");
-    }
-}
+//    static void OtherButtonClickedBehaviour(Button button)
+//    {
+//        Console.WriteLine("Other button clicked!");
+//    }
+//}
 
 #endregion
 
@@ -261,9 +261,36 @@ class Program
 //2:29:00 - Understanding Hoisting and Deferred Execution
 //2:31:16 - Understanding Delegates and Generics
 //2:33:10 - Exploring Different Types of Delegates
-//2:35:23 - Using Built - In Delegate Types
+//2:35:23 - Using Built-In Delegate Types
 //2:37:28 - Passing in Return Types with Delegates
 //2:39:00 - Explaining Generics and Delegates
-//2:41:51 - Understanding Delegates
-//2:43:39 - Introduction to the Project and Logistics
+
+class Program
+{
+    // delegate bool IntPredicate(int number); // We will use built-in delegate types instead
+    static void Main(string[] args)
+    {
+        var arr = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+        var filteredList = Filter(arr, n => (n % 3 == 0) && (n % 5 == 0));
+
+        foreach (var item in filteredList)
+        {
+            Console.WriteLine(item);
+        }
+        Console.ReadKey();
+    }
+
+    // static IEnumerable<int> Filter(IEnumerable<int> source, IntPredicate predicate)
+    static IEnumerable<int> Filter(IEnumerable<int> source, Func<int, bool> predicate)
+    {
+        var list = new List<int>();
+        foreach (var item in source)
+        {
+            if (predicate(item))
+                list.Add(item);
+        }
+        return list;
+    }
+}
+
 #endregion
