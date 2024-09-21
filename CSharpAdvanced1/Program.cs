@@ -198,22 +198,50 @@ using System.Security.Cryptography.X509Certificates;
 #endregion
 
 #region
-//1:25:01 - Understanding C# Delegates
-//1:27:19 - Working with Delegates
-//1:27:42 - The Problems with Public Fields
-//1:29:36 - Solving the Final Big Problem
 //1:31:40 - Exploring Events in C#
 //1:33:50 - Understanding Events and Delegates
 //1:35:56 - Exploring the Relationship Between Delegates and Events
 //1:37:40 - Explaining Events in C#
 //1:39:42 - Understanding Events and Delegates
-//1:41:41 - Events as Protected Delegates
-//1:43:00 - Protecting the Delegate with an Event
-//1:45:53 - Understanding Events and Delegates
-//1:47:59 - Understanding Events in C#
-//1:49:55 - Accessing Private Setters from Outside a Class
-//1:51:49 - Contrast Between Delegates and Events in Button
-//1:53:34 - Garbage Collection and Event Handlers
+
+delegate void ButtonClick(Button button);
+
+class Button
+{
+    public event ButtonClick Click;
+    public void SimulateClick()
+    {
+        if (Click != null)
+            Click(this);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var button = new Button();
+        button.Click += ButtonClickedBehaviour;
+        button.Click += OtherButtonClickedBehaviour;
+
+        button.SimulateClick();
+        Console.ReadKey();
+    }
+
+    static void ButtonClickedBehaviour(Button button)
+    {
+        Console.WriteLine("Button clicked!");
+    }
+
+    static void OtherButtonClickedBehaviour(Button button)
+    {
+        Console.WriteLine("Other button clicked!");
+    }
+}
+
+#endregion
+
+#region
 //1:55:46 - Anonymous Delegates in C#
 //1:57:51 - Understanding Anonymous Delegates
 //1:59:51 - Lambda Syntax vs Anonymous Delegates
